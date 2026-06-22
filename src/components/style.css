@@ -1,0 +1,356 @@
+/* ==========================================================================
+   1. Design System & Theme Tokens
+   ========================================================================== */
+:root {
+  /* Color Palette - Premium Dark */
+  --bg-main: #0b0f19;
+  --bg-surface: #131c2e;
+  --bg-element: #1a263e;
+  
+  --text-main: #f3f4f6;
+  --text-muted: #8596b0;
+  
+  /* Accent Colors */
+  --accent: #00f0ff;
+  --accent-glow: rgba(0, 240, 255, 0.25);
+  --accent-hover: #00d8e6;
+  
+  --danger: #ff4a6b;
+  --danger-glow: rgba(255, 74, 107, 0.25);
+  --danger-hover: #e63353;
+  
+  --border-color: #243553;
+  
+  /* System Defaults */
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+  --easing-smooth: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: 200ms var(--easing-smooth);
+  --transition-normal: 350ms var(--easing-smooth);
+}
+
+/* Global Reset Tweaks for Contextual Fluidity */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   2. Keyframe Animations
+   ========================================================================== */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseNeon {
+  0%, 100% { box-shadow: 0 4px 15px var(--accent-glow); }
+  50% { box-shadow: 0 4px 25px rgba(0, 240, 255, 0.45); }
+}
+
+/* ==========================================================================
+   3. Global Elements & Forms
+   ========================================================================== */
+.custom-form-label {
+  display: block;
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.custom-form-input {
+  width: 100%;
+  padding: 0.75rem 1rem !important;
+  background: var(--bg-main) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-main) !important;
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+.custom-form-input:focus {
+  outline: none !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 4px var(--accent-glow) !important;
+}
+
+.custom-form-input::placeholder {
+  color: #3b4f70;
+}
+
+/* Search override variant */
+.custom-search-input {
+  max-width: 320px;
+}
+
+/* ==========================================================================
+   4. Navigation & Layout Structures
+   ========================================================================== */
+.bg-custom-dark {
+  background: var(--bg-surface) !important;
+  backdrop-filter: blur(8px);
+  padding: 0.75rem 1.5rem;
+}
+
+.border-bottom-cyan {
+  border-bottom: 2px solid var(--accent) !important;
+  animation: pulseNeon 3s infinite ease-in-out;
+}
+
+.navbar-dark .navbar-brand.text-neon {
+  color: var(--accent) !important;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Container Wrappers */
+.todos-container,
+.add-todo-container,
+.about-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+  animation: slideUpFade var(--transition-normal) forwards;
+}
+
+.todos-container { margin-top: 2rem; }
+.about-container { margin-top: 2rem; padding: 0 0.5rem; }
+
+/* Headers styling */
+.todos-heading,
+.about-heading,
+.add-todo-heading {
+  color: var(--text-main);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.todos-heading {
+  font-size: 1.6rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.add-todo-heading, .about-heading {
+  font-size: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ==========================================================================
+   5. Dynamic Lists & Todo Items
+   ========================================================================== */
+.todos-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-item-card {
+  background: var(--bg-element);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.todo-item-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.todo-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.todo-item-title {
+  color: var(--text-main);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.todo-item-id {
+  color: var(--text-muted);
+  font-family: monospace;
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.todo-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-item-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.todo-item-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.no-todos-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+  padding: 3rem 1rem;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   6. Buttons & Interactive Elements
+   ========================================================================== */
+/* Master button resets */
+.btn-neon-outline,
+.btn-todo-delete,
+.btn-todo-submit {
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-neon-outline {
+  background: transparent;
+  color: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: background var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-neon-outline:hover {
+  background: var(--accent) !important;
+  color: var(--bg-main) !important;
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn-todo-delete {
+  background: rgba(255, 74, 107, 0.05);
+  color: var(--danger);
+  border: 1px solid rgba(255, 74, 107, 0.4);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-todo-delete:hover {
+  background: var(--danger);
+  border-color: var(--danger);
+  color: var(--text-main);
+  box-shadow: 0 4px 12px var(--danger-glow);
+}
+
+.btn-todo-submit {
+  width: 100%;
+  background: var(--accent);
+  color: var(--bg-main);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn-todo-submit:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 20px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.btn-todo-submit:active {
+  transform: translateY(1px);
+}
+
+@media (min-width: 576px) {
+  .btn-todo-submit {
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   7. About Section Components & Footer
+   ========================================================================== */
+.about-text {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.about-badge-group {
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+.about-badge {
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 20px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  letter-spacing: 0.02em;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.about-badge:hover {
+  border-color: var(--accent);
+  background: rgba(0, 240, 255, 0.12);
+}
+
+.custom-footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.footer-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  margin: 0;
+  opacity: 0.7;
+}
