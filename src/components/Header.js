@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import "./style.css"; // Ensure this matches your style file location
 
 export default function Header(props) {
+  let pre = (e)=>{
+    e.preventDefault();
+  }
+  
   return (
     /* Added navbar-dark for readable light text and bg-custom-dark for our theme */
     <nav className="navbar navbar-expand-lg navbar-dark bg-custom-dark border-bottom-cyan">
@@ -22,7 +26,7 @@ export default function Header(props) {
             </li>
           </ul>
           { props.searchBar ? (
-            <form className="d-flex">
+            <form onSubmit={pre} className="d-flex">
               <input className="form-control custom-search-input me-2" type="search" placeholder="Search tasks..." aria-label="Search"/>
               <button className="btn-neon-outline" type="submit">Search</button>
             </form>

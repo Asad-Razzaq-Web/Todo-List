@@ -56,7 +56,7 @@ function App() {
 
   // ---get data from storade to dispaly---
   let initTodo;
-  if (localStorage.getItem === null) {
+ if (localStorage.getItem("todos") === null) {
     initTodo = [];
   } else {
     initTodo = JSON.parse(localStorage.getItem("todos"));
@@ -74,7 +74,7 @@ function App() {
 
   return (
     <>
-<Router>
+<Router basename="/Todo-List">
   <Header title="Todo List" searchBar={true} />
      <main className="content-wrapper">
   <Routes>

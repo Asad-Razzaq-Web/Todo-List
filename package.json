@@ -1,4 +1,5 @@
 {
+  "homepage": "https://asad-razzaq-web.github.io/Todo-List",
   "name": "1",
   "version": "0.1.0",
   "private": true,
@@ -15,8 +16,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set GENERATE_SOURCEMAP=false&&set SKIP_PREFLIGHT_CHECK=true&&react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
